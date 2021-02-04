@@ -1,0 +1,66 @@
+$maxWidth: 1280px;
+$maxWidth_SP: 375px;
+$breakpoint: 840px;
+$baseColor: #7ad6bb;
+$bgBaseColor: #f0f0f0;
+$webFont_en: "Objective", "sans-serif";
+$webFont_jp: "Noto Sans JP", sans-serif;
+
+@mixin clearfix() {
+  &:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+@mixin mvFontsizeVw($size) {
+  font-size: ($size / $winW) * 100 + vw;
+
+  $winW: 1280px; // 画面幅を設定する
+}
+
+@mixin breakPoint {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+/*小数点を丸める関数*/
+@function decimal-round($number, $digits: 0, $mode: round) {
+  $n: 1;
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @if $digits > 0 {
+    @for $i from 1 through $digits {
+      $n: $n * 10;
+    }
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+@function decimal-ceil($number, $digits: 0) {
+  @return decimal-round($number, $digits, ceil);
+}
+
+@function decimal-floor($number, $digits: 0) {
+  @return decimal-round($number, $digits, floor);
+}

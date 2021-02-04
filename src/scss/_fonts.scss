@@ -1,0 +1,59 @@
+@mixin font-face(
+  $name,
+  $path,
+  $weight: null,
+  $style: null,
+  $exts: eot woff ttf svg
+) {
+  $src: null;
+
+  $extmods: (
+    //eot: “?”, 古いIE用のkeyを設定する用だが割愛。一応記載しておきます。
+    svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+    eot: "embedded-opentype",
+  );
+
+  @each $ext in $exts {
+    $extmod: if(
+      map-has-key($extmods, $ext),
+      $ext + map-get($extmods, $ext),
+      $ext
+    );
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append(
+      $src,
+      url(quote($path + "." + $extmod)) format(quote($format)),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+@include font-face("Objective", "/font/objective-medium-webfont", 500, normal);
+
+@include font-face(
+  "Objective",
+  "/font/objective-medium-italic-webfont",
+  500,
+  italic
+);
+
+@include font-face("Objective", "/font/objective-bold-webfont", 700, normal);
+
+@include font-face(
+  "Objective",
+  "/font/objective-bold-italic-webfont",
+  700,
+  italic
+);
