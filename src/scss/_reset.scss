@@ -6,13 +6,6 @@
   padding: 0;
 }
 
-// @supports (-webkit-touch-callout: none) {
-//   body {
-//     /* Safari用のハック */
-//     height: -webkit-fill-available;
-//   }
-// }
-
 html,
 body,
 div,
@@ -68,7 +61,7 @@ img {
   height: auto;
 }
 
-/*base*/
+//base
 body,
 html {
   height: 100vh;

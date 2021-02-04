@@ -26,7 +26,7 @@ $webFont_jp: "Noto Sans JP", sans-serif;
   }
 }
 
-/*小数点を丸める関数*/
+//小数点を丸める関数
 @function decimal-round($number, $digits: 0, $mode: round) {
   $n: 1;
   @if type-of($number) != number {

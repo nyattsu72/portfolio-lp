@@ -2,7 +2,7 @@
 @import "setup";
 @import "fonts";
 
-/*base*/
+//module
 .basepoint {
   position: relative;
 }
@@ -81,7 +81,7 @@
   }
 }
 
-/*Roading Animation*/
+//Roading Animation
 #loading {
   position: fixed;
   top: 0;
@@ -186,7 +186,7 @@
   }
 }
 
-/*header*/
+//header
 .main {
   position: relative;
   margin-bottom: 290px;
@@ -246,7 +246,6 @@
     font-weight: 700;
     font-style: italic;
     font-size: 18rem;
-    // font-size: calc(12rem + ((1vw - 0.84rem) * 13.6));
     font-size: unquote("min(16vw, 18rem)");
     font-family: $webFont_en;
     line-height: 1.2;
